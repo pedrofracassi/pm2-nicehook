@@ -1,0 +1,25 @@
+{
+  "name": "pm2-nicehook",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express-github-webhook": "^1.0.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pedrofracassi/pm2-nicehook.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pedrofracassi/pm2-nicehook/issues"
+  },
+  "homepage": "https://github.com/pedrofracassi/pm2-nicehook#readme"
+}
