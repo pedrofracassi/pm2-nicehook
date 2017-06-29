@@ -3,7 +3,7 @@ var createHandler = require('github-webhook-handler');
 
 var handler = createHandler({
   "path": '/webhook',
-  "secret": 'myhashsecret'
+  "secret": 'WOLOLO'
 });
 
 http.createServer(function (req, res) {
@@ -18,15 +18,9 @@ handler.on('error', function (err) {
 });
 
 handler.on('push', function (event) {
-  console.log('Received a push event for %s to %s',
-    event.payload.repository.name,
-    event.payload.ref);
-})
-
-handler.on('issues', function (event) {
-  console.log('Received an issue event for %s action=%s: #%d %s',
-    event.payload.repository.name,
-    event.payload.action,
-    event.payload.issue.number,
-    event.payload.issue.title)
-})
+  if (event.payload.ref == 'refs/heads/master') {
+    exec('pm2 pull ' + event.payload.repository.name, function(error, stdout, stderr) {
+        if (error) return console.log(error);
+    });
+  }
+});
