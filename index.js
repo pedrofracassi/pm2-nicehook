@@ -1,16 +1,28 @@
-const express = require('express');
-const GithubWebHook = require('express-github-webhook');
-const bodyParser = require('body-parser');
+var http = require('http');
+var createHandler = require('github-webhook-handler');
+var handler = createHandler({ path: '/webhook', secret: 'myhashsecret' });
 
-var webhookHandler = GithubWebHook({ path: '/webhook', secret: 'secret' });
+http.createServer(function (req, res) {
+  handler(req, res, function (err) {
+    res.statusCode = 404;
+    res.end('no such location');
+  });
+}).listen(8888);
 
-let app = express();
-app.use(bodyParser.json());
-app.use(webhookHandler);
-
-webhookHandler.on('push', (repo, data) => {
-  console.log('Repo name: ' + repo);
-  console.log('--------------');
-  console.log('DATA:');
-  console.log(data);
+handler.on('error', function (err) {
+  console.error('Error:', err.message);
 });
+
+handler.on('push', function (event) {
+  console.log('Received a push event for %s to %s',
+    event.payload.repository.name,
+    event.payload.ref);
+})
+
+handler.on('issues', function (event) {
+  console.log('Received an issue event for %s action=%s: #%d %s',
+    event.payload.repository.name,
+    event.payload.action,
+    event.payload.issue.number,
+    event.payload.issue.title)
+})
