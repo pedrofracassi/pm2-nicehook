@@ -1,10 +1,10 @@
 {
   "name": "pm2-nicehook",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "dependencies": {
     "body-parser": "^1.17.2",
+    "express": "^4.15.3",
     "express-github-webhook": "^1.0.6"
   },
   "devDependencies": {},
@@ -21,5 +21,6 @@
   "bugs": {
     "url": "https://github.com/pedrofracassi/pm2-nicehook/issues"
   },
-  "homepage": "https://github.com/pedrofracassi/pm2-nicehook#readme"
+  "homepage": "https://github.com/pedrofracassi/pm2-nicehook#readme",
+  "description": ""
 }
